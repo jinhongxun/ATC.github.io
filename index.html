@@ -3,104 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大兴塔台 · 执勤卡片系统</title>
+    <title>塔台管制一室 · 执勤卡片系统</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{height:100%}
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
         body{
-            font-family:"Inter","Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
-            background:linear-gradient(135deg,#e8edf4 0%,#f0f2f5 40%,#e0e8f0 100%);
-            color:#333;
+            font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
+            background:linear-gradient(160deg,#1a3a5c 0%,#2d6a9f 50%,#1e5080 100%);
+            color:#fff;
             height:100vh;
             width:100vw;
             overflow:hidden;
             position:relative
         }
+        /* Subtle grid */
         body::before{
-            content:'';
-            position:fixed;
-            top:0;left:0;right:0;bottom:0;
+            content:'';position:fixed;top:0;left:0;right:0;bottom:0;
             background-image:
-                linear-gradient(rgba(26,58,92,.03) 1px,transparent 1px),
-                linear-gradient(90deg,rgba(26,58,92,.03) 1px,transparent 1px);
-            background-size:60px 60px;
-            z-index:0;
-            pointer-events:none
+                linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+            background-size:60px 60px;z-index:0;pointer-events:none
         }
+        /* Glow orbs */
+        .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+        .orb-1{top:-100px;right:-100px;width:400px;height:400px;background:rgba(255,255,255,.04)}
+        .orb-2{bottom:-150px;left:-80px;width:350px;height:350px;background:rgba(255,255,255,.03)}
+
         .top-bar{
-            position:fixed;
-            top:0;left:0;right:0;
-            z-index:10;
-            padding:22px 44px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            background:linear-gradient(180deg,rgba(255,255,255,.7) 0%,transparent 100%);
+            position:fixed;top:0;left:0;right:0;z-index:10;padding:22px 44px;
+            display:flex;justify-content:space-between;align-items:center;
             pointer-events:none
         }
-        .top-bar .brand{font-size:12px;font-weight:600;color:#4a6a85;letter-spacing:3px;text-transform:uppercase}
-        .top-bar .version{font-size:11px;color:#8a9aa8;letter-spacing:1px}
+        .top-bar .brand{font-size:12px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:3px;text-transform:uppercase}
+        .top-bar .version{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px}
+
         .shell{
             position:relative;z-index:2;height:100vh;width:100vw;
             display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px
         }
+
         .hero-card{
-            background:#fff;border-radius:16px;
-            box-shadow:0 4px 24px rgba(26,58,92,.08),0 1px 3px rgba(26,58,92,.04);
-            padding:56px 52px 48px;text-align:center;max-width:620px;width:100%;
-            position:relative;overflow:hidden;transition:box-shadow .3s
+            background:rgba(255,255,255,.95);border-radius:16px;
+            box-shadow:0 8px 40px rgba(0,0,0,.15);
+            padding:48px 52px 44px;text-align:center;max-width:600px;width:100%;
+            position:relative;overflow:hidden
         }
-        .hero-card:hover{box-shadow:0 8px 40px rgba(26,58,92,.12),0 1px 3px rgba(26,58,92,.06)}
         .hero-card::before{
             content:'';position:absolute;top:0;left:0;right:0;height:4px;
             background:linear-gradient(90deg,#1a3a5c,#2d6a9f,#4a8ab5)
         }
         .hero-card .emblem{
-            width:72px;height:72px;margin:0 auto 20px;
+            width:64px;height:64px;margin:0 auto 18px;
             background:linear-gradient(135deg,#1a3a5c,#2d6a9f);border-radius:50%;
             display:flex;align-items:center;justify-content:center;
-            font-size:30px;color:#fff;box-shadow:0 6px 16px rgba(26,58,92,.2)
+            font-size:28px;color:#fff;box-shadow:0 6px 16px rgba(26,58,92,.25)
         }
-        .hero-card h1{font-size:30px;font-weight:700;color:#1a3a5c;letter-spacing:3px;margin-bottom:4px}
-        .hero-card .sub{font-size:13px;color:#8a9aa8;letter-spacing:4px;font-weight:500;margin-bottom:20px;text-transform:uppercase}
-        .hero-card .divider{width:48px;height:3px;background:linear-gradient(90deg,#1a3a5c,#2d6a9f);margin:0 auto 20px;border-radius:2px}
-        .hero-card .desc{font-size:14px;color:#7a8a9a;line-height:1.7;margin-bottom:8px}
-        .hero-card .meta-row{display:flex;justify-content:center;gap:28px;margin-top:16px;flex-wrap:wrap}
+        .hero-card h1{font-size:28px;font-weight:700;color:#1a3a5c;letter-spacing:3px;margin-bottom:4px}
+        .hero-card .sub{font-size:13px;color:#8a9aa8;letter-spacing:4px;font-weight:500;margin-bottom:16px;text-transform:uppercase}
+        .hero-card .divider{width:48px;height:3px;background:linear-gradient(90deg,#1a3a5c,#2d6a9f);margin:0 auto 16px;border-radius:2px}
+        .hero-card .desc{font-size:14px;color:#7a8a9a;line-height:1.7;margin-bottom:4px}
+        .hero-card .meta-row{display:flex;justify-content:center;gap:24px;margin-top:12px;flex-wrap:wrap}
         .hero-card .meta-item{font-size:12px;color:#9aabb8;letter-spacing:1px}
         .hero-card .meta-item .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#2d6a9f;margin-right:6px;vertical-align:middle}
+
+        .entries{display:flex;flex-direction:column;gap:12px;margin-top:24px;align-items:center}
+
         .entry-btn{
-            display:inline-flex;align-items:center;gap:14px;margin-top:28px;
-            padding:16px 36px 16px 28px;
+            display:inline-flex;align-items:center;gap:14px;
+            padding:14px 32px 14px 24px;
             background:linear-gradient(135deg,#1a3a5c,#2d6a9f);border-radius:10px;
-            text-decoration:none;transition:all .3s cubic-bezier(.25,.46,.45,.94);
-            box-shadow:0 4px 12px rgba(26,58,92,.2)
+            text-decoration:none;transition:all .3s;
+            box-shadow:0 4px 12px rgba(26,58,92,.2);width:100%;max-width:420px
         }
         .entry-btn:hover{
             transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,92,.3);
             background:linear-gradient(135deg,#1e4268,#3478b0)
         }
         .entry-btn .eb-icon{font-size:18px;color:rgba(255,255,255,.8)}
-        .entry-btn .eb-text{text-align:left}
+        .entry-btn .eb-text{text-align:left;flex:1}
         .entry-btn .eb-text .eb-title{font-size:15px;font-weight:600;color:#fff;letter-spacing:1px}
         .entry-btn .eb-text .eb-desc{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
         .entry-btn .eb-arrow{font-size:20px;color:rgba(255,255,255,.4);transition:all .3s;margin-left:4px}
         .entry-btn:hover .eb-arrow{color:#fff;transform:translateX(4px)}
+
+        .report-btn{background:linear-gradient(135deg,#2a5a8c,#3d7ab5);box-shadow:0 4px 12px rgba(42,90,140,.2)}
+        .report-btn:hover{background:linear-gradient(135deg,#306898,#4588c5);box-shadow:0 8px 24px rgba(42,90,140,.3)}
+
         .bottom-bar{
             position:fixed;bottom:0;left:0;right:0;z-index:10;padding:20px 44px;text-align:center;
-            background:linear-gradient(0deg,rgba(255,255,255,.5) 0%,transparent 100%);pointer-events:none
+            pointer-events:none
         }
-        .bottom-bar span{font-size:10px;color:#b0c0ce;letter-spacing:3px;text-transform:uppercase}
+        .bottom-bar span{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:3px;text-transform:uppercase}
+
         @media(max-width:600px){
-            .hero-card{padding:36px 24px 32px;margin:0 12px}
-            .hero-card h1{font-size:24px}
-            .entry-btn{padding:14px 24px 14px 20px;gap:10px}
-            .top-bar{padding:16px 20px}
-            .bottom-bar{padding:14px 20px}
+            .hero-card{padding:32px 20px 28px;margin:0 12px}
+            .hero-card h1{font-size:22px}
+            .entry-btn{padding:12px 20px 12px 16px;gap:10px}
         }
     </style>
 </head>
 <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
     <div class="top-bar">
         <span class="brand">Daxing Tower</span>
         <span class="version">ATC · 内部系统</span>
@@ -108,23 +112,33 @@
     <div class="shell">
         <div class="hero-card">
             <div class="emblem">✈</div>
-            <h1>大兴塔台管制室</h1>
+            <h1>塔台管制一室</h1>
             <div class="sub">Daxing International Airport Tower</div>
             <div class="divider"></div>
-            <p class="desc">执勤卡片电子化管理系统<br>实时查询人员排班、席位分配与执勤信息</p>
+            <p class="desc">执勤卡片电子化管理系统</p>
             <div class="meta-row">
-                <span class="meta-item"><span class="dot"></span> 塔台一室</span>
+                <span class="meta-item"><span class="dot"></span> 大兴国际机场</span>
                 <span class="meta-item"><span class="dot"></span> 2024年5月</span>
                 <span class="meta-item"><span class="dot"></span> 内部使用</span>
             </div>
-            <a class="entry-btn" href="./执勤卡片0524.html">
-                <span class="eb-icon">📋</span>
-                <span class="eb-text">
-                    <div class="eb-title">进入执勤卡片</div>
-                    <div class="eb-desc">5月24日 · 全员排班与席位查询</div>
-                </span>
-                <span class="eb-arrow">→</span>
-            </a>
+            <div class="entries">
+                <a class="entry-btn" href="./执勤卡片0524.html">
+                    <span class="eb-icon">📋</span>
+                    <span class="eb-text">
+                        <div class="eb-title">进入执勤卡片</div>
+                        <div class="eb-desc">5月24日 · 全员排班与席位查询</div>
+                    </span>
+                    <span class="eb-arrow">→</span>
+                </a>
+                <a class="entry-btn report-btn" href="./排班分析报告0524.html">
+                    <span class="eb-icon">📊</span>
+                    <span class="eb-text">
+                        <div class="eb-title">排班分析报告</div>
+                        <div class="eb-desc">5月24日 · 工时统计与搭配合规</div>
+                    </span>
+                    <span class="eb-arrow">→</span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="bottom-bar">
