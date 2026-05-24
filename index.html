@@ -10,284 +10,125 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
         body{
             font-family:"Inter","Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
-            background:#060e1a;
-            color:#e8edf5;
+            background:linear-gradient(135deg,#e8edf4 0%,#f0f2f5 40%,#e0e8f0 100%);
+            color:#333;
             height:100vh;
             width:100vw;
             overflow:hidden;
             position:relative
         }
-        /* Full-screen background gradient */
-        .bg-glow{
-            position:fixed;
-            top:0;left:0;right:0;bottom:0;
-            background:
-                radial-gradient(ellipse 80% 60% at 20% 50%,rgba(26,58,92,.35) 0%,transparent 70%),
-                radial-gradient(ellipse 60% 70% at 80% 30%,rgba(45,106,159,.2) 0%,transparent 60%),
-                radial-gradient(ellipse 50% 50% at 50% 100%,rgba(10,25,45,.5) 0%,transparent 60%);
-            z-index:0
-        }
-        /* Grid overlay */
-        .bg-grid{
+        body::before{
+            content:'';
             position:fixed;
             top:0;left:0;right:0;bottom:0;
             background-image:
-                linear-gradient(rgba(45,106,159,.04) 1px,transparent 1px),
-                linear-gradient(90deg,rgba(45,106,159,.04) 1px,transparent 1px);
-            background-size:80px 80px;
-            z-index:1;
+                linear-gradient(rgba(26,58,92,.03) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(26,58,92,.03) 1px,transparent 1px);
+            background-size:60px 60px;
+            z-index:0;
             pointer-events:none
         }
-        /* Floating particles */
-        .particle{
-            position:fixed;
-            width:3px;height:3px;
-            background:rgba(255,255,255,.15);
-            border-radius:50%;
-            z-index:1;
-            pointer-events:none;
-            animation:float linear infinite
-        }
-        .particle:nth-child(1){top:15%;left:10%;animation-duration:18s;animation-delay:0s;width:2px;height:2px}
-        .particle:nth-child(2){top:25%;left:85%;animation-duration:22s;animation-delay:-3s}
-        .particle:nth-child(3){top:55%;left:5%;animation-duration:15s;animation-delay:-7s;width:4px;height:4px;opacity:.08}
-        .particle:nth-child(4){top:70%;left:75%;animation-duration:20s;animation-delay:-5s;width:2px;height:2px}
-        .particle:nth-child(5){top:40%;left:50%;animation-duration:25s;animation-delay:-10s;opacity:.06}
-        .particle:nth-child(6){top:10%;left:40%;animation-duration:16s;animation-delay:-2s;width:2px;height:2px}
-        .particle:nth-child(7){top:80%;left:30%;animation-duration:19s;animation-delay:-8s;opacity:.08}
-        .particle:nth-child(8){top:90%;left:90%;animation-duration:23s;animation-delay:-12s;width:2px;height:2px}
-        @keyframes float{
-            0%{transform:translateY(0) translateX(0)}
-            25%{transform:translateY(-30px) translateX(10px)}
-            50%{transform:translateY(-60px) translateX(-5px)}
-            75%{transform:translateY(-90px) translateX(15px)}
-            100%{transform:translateY(-120px) translateX(0)}
-        }
-
-        /* Main layout - full viewport */
-        .shell{
-            position:relative;
-            z-index:2;
-            height:100vh;
-            width:100vw;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-            padding:48px
-        }
-
-        /* Top navigation bar */
         .top-bar{
             position:fixed;
             top:0;left:0;right:0;
             z-index:10;
-            padding:20px 40px;
+            padding:22px 44px;
             display:flex;
             justify-content:space-between;
             align-items:center;
-            background:linear-gradient(180deg,rgba(6,14,26,.8) 0%,transparent 100%);
+            background:linear-gradient(180deg,rgba(255,255,255,.7) 0%,transparent 100%);
             pointer-events:none
         }
-        .top-bar .brand{
-            font-size:13px;
-            font-weight:500;
-            color:rgba(255,255,255,.35);
-            letter-spacing:3px;
-            text-transform:uppercase
+        .top-bar .brand{font-size:12px;font-weight:600;color:#4a6a85;letter-spacing:3px;text-transform:uppercase}
+        .top-bar .version{font-size:11px;color:#8a9aa8;letter-spacing:1px}
+        .shell{
+            position:relative;z-index:2;height:100vh;width:100vw;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px
         }
-        .top-bar .version{
-            font-size:11px;
-            color:rgba(255,255,255,.15);
-            letter-spacing:1px
+        .hero-card{
+            background:#fff;border-radius:16px;
+            box-shadow:0 4px 24px rgba(26,58,92,.08),0 1px 3px rgba(26,58,92,.04);
+            padding:56px 52px 48px;text-align:center;max-width:620px;width:100%;
+            position:relative;overflow:hidden;transition:box-shadow .3s
         }
-
-        /* Main hero area - centered */
-        .hero-center{
-            text-align:center;
-            max-width:700px
+        .hero-card:hover{box-shadow:0 8px 40px rgba(26,58,92,.12),0 1px 3px rgba(26,58,92,.06)}
+        .hero-card::before{
+            content:'';position:absolute;top:0;left:0;right:0;height:4px;
+            background:linear-gradient(90deg,#1a3a5c,#2d6a9f,#4a8ab5)
         }
-        .hero-center .badge{
-            display:inline-block;
-            font-size:11px;
-            letter-spacing:3px;
-            color:rgba(255,255,255,.3);
-            border:1px solid rgba(255,255,255,.06);
-            padding:6px 20px;
-            border-radius:20px;
-            margin-bottom:32px;
-            text-transform:uppercase
+        .hero-card .emblem{
+            width:72px;height:72px;margin:0 auto 20px;
+            background:linear-gradient(135deg,#1a3a5c,#2d6a9f);border-radius:50%;
+            display:flex;align-items:center;justify-content:center;
+            font-size:30px;color:#fff;box-shadow:0 6px 16px rgba(26,58,92,.2)
         }
-        .hero-center .icon-row{
-            margin-bottom:24px
+        .hero-card h1{font-size:30px;font-weight:700;color:#1a3a5c;letter-spacing:3px;margin-bottom:4px}
+        .hero-card .sub{font-size:13px;color:#8a9aa8;letter-spacing:4px;font-weight:500;margin-bottom:20px;text-transform:uppercase}
+        .hero-card .divider{width:48px;height:3px;background:linear-gradient(90deg,#1a3a5c,#2d6a9f);margin:0 auto 20px;border-radius:2px}
+        .hero-card .desc{font-size:14px;color:#7a8a9a;line-height:1.7;margin-bottom:8px}
+        .hero-card .meta-row{display:flex;justify-content:center;gap:28px;margin-top:16px;flex-wrap:wrap}
+        .hero-card .meta-item{font-size:12px;color:#9aabb8;letter-spacing:1px}
+        .hero-card .meta-item .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#2d6a9f;margin-right:6px;vertical-align:middle}
+        .entry-btn{
+            display:inline-flex;align-items:center;gap:14px;margin-top:28px;
+            padding:16px 36px 16px 28px;
+            background:linear-gradient(135deg,#1a3a5c,#2d6a9f);border-radius:10px;
+            text-decoration:none;transition:all .3s cubic-bezier(.25,.46,.45,.94);
+            box-shadow:0 4px 12px rgba(26,58,92,.2)
         }
-        .hero-center .icon-row span{
-            display:inline-block;
-            width:80px;height:80px;
-            line-height:80px;
-            font-size:36px;
-            border-radius:50%;
-            background:linear-gradient(135deg,rgba(45,106,159,.15),rgba(45,106,159,.03));
-            border:1px solid rgba(45,106,159,.15)
+        .entry-btn:hover{
+            transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,92,.3);
+            background:linear-gradient(135deg,#1e4268,#3478b0)
         }
-        .hero-center h1{
-            font-size:52px;
-            font-weight:800;
-            letter-spacing:4px;
-            line-height:1.15;
-            margin-bottom:8px;
-            background:linear-gradient(135deg,#fff 30%,#7aafd6 70%,#4a8ab5);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent
-        }
-        .hero-center .sub{
-            font-size:15px;
-            color:rgba(255,255,255,.35);
-            letter-spacing:6px;
-            font-weight:300;
-            margin-bottom:24px;
-            text-transform:uppercase
-        }
-        .hero-center .tagline{
-            font-size:14px;
-            color:rgba(255,255,255,.25);
-            font-weight:300;
-            letter-spacing:1px
-        }
-
-        /* Center divider */
-        .center-divider{
-            width:40px;height:1px;
-            background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-            margin:36px auto
-        }
-
-        /* Entry card - full width button */
-        .entry-card{
-            display:inline-flex;
-            align-items:center;
-            gap:16px;
-            padding:18px 40px 18px 28px;
-            background:linear-gradient(135deg,rgba(45,106,159,.12),rgba(45,106,159,.03));
-            border:1px solid rgba(45,106,159,.15);
-            border-radius:60px;
-            text-decoration:none;
-            transition:all .4s cubic-bezier(.25,.46,.45,.94);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            cursor:pointer
-        }
-        .entry-card:hover{
-            background:linear-gradient(135deg,rgba(45,106,159,.2),rgba(45,106,159,.08));
-            border-color:rgba(45,106,159,.3);
-            transform:scale(1.03);
-            box-shadow:0 12px 48px rgba(45,106,159,.15)
-        }
-        .entry-card .ec-icon{
-            width:44px;height:44px;
-            background:linear-gradient(135deg,rgba(45,106,159,.25),rgba(45,106,159,.05));
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:20px;
-            flex-shrink:0
-        }
-        .entry-card .ec-text{
-            text-align:left
-        }
-        .entry-card .ec-text .ec-title{
-            font-size:16px;
-            font-weight:600;
-            color:#e8edf5;
-            letter-spacing:1px
-        }
-        .entry-card .ec-text .ec-desc{
-            font-size:12px;
-            color:rgba(255,255,255,.3);
-            margin-top:2px
-        }
-        .entry-card .ec-arrow{
-            font-size:22px;
-            color:rgba(255,255,255,.2);
-            transition:all .4s;
-            margin-left:8px
-        }
-        .entry-card:hover .ec-arrow{
-            color:rgba(255,255,255,.6);
-            transform:translateX(6px)
-        }
-
-        /* Bottom bar */
+        .entry-btn .eb-icon{font-size:18px;color:rgba(255,255,255,.8)}
+        .entry-btn .eb-text{text-align:left}
+        .entry-btn .eb-text .eb-title{font-size:15px;font-weight:600;color:#fff;letter-spacing:1px}
+        .entry-btn .eb-text .eb-desc{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
+        .entry-btn .eb-arrow{font-size:20px;color:rgba(255,255,255,.4);transition:all .3s;margin-left:4px}
+        .entry-btn:hover .eb-arrow{color:#fff;transform:translateX(4px)}
         .bottom-bar{
-            position:fixed;
-            bottom:0;left:0;right:0;
-            z-index:10;
-            padding:24px 40px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(0deg,rgba(6,14,26,.8) 0%,transparent 100%);
-            pointer-events:none
+            position:fixed;bottom:0;left:0;right:0;z-index:10;padding:20px 44px;text-align:center;
+            background:linear-gradient(0deg,rgba(255,255,255,.5) 0%,transparent 100%);pointer-events:none
         }
-        .bottom-bar .footer-text{
-            font-size:10px;
-            color:rgba(255,255,255,.08);
-            letter-spacing:4px;
-            text-transform:uppercase
-        }
-
-        @media(max-width:640px){
-            .hero-center h1{font-size:32px;letter-spacing:2px}
-            .hero-center .sub{font-size:11px;letter-spacing:3px}
-            .entry-card{padding:14px 24px 14px 18px;border-radius:40px;gap:12px}
-            .entry-card .ec-text .ec-title{font-size:14px}
+        .bottom-bar span{font-size:10px;color:#b0c0ce;letter-spacing:3px;text-transform:uppercase}
+        @media(max-width:600px){
+            .hero-card{padding:36px 24px 32px;margin:0 12px}
+            .hero-card h1{font-size:24px}
+            .entry-btn{padding:14px 24px 14px 20px;gap:10px}
             .top-bar{padding:16px 20px}
-            .bottom-bar{padding:16px 20px}
-            .hero-center .icon-row span{width:60px;height:60px;line-height:60px;font-size:28px}
+            .bottom-bar{padding:14px 20px}
         }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-    <div class="bg-grid"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-
     <div class="top-bar">
         <span class="brand">Daxing Tower</span>
         <span class="version">ATC · 内部系统</span>
     </div>
-
     <div class="shell">
-        <div class="hero-center">
-            <div class="badge">China · North ATMB</div>
-            <div class="icon-row"><span>✈</span></div>
-            <h1>大兴塔台</h1>
+        <div class="hero-card">
+            <div class="emblem">✈</div>
+            <h1>大兴塔台管制室</h1>
             <div class="sub">Daxing International Airport Tower</div>
-            <div class="center-divider"></div>
-            <div style="margin-bottom:32px">
-                <a class="entry-card" href="./执勤卡片0524.html">
-                    <div class="ec-icon">📋</div>
-                    <div class="ec-text">
-                        <div class="ec-title">进入执勤卡片</div>
-                        <div class="ec-desc">2024年5月24日 · 全员排班与席位查询</div>
-                    </div>
-                    <div class="ec-arrow">→</div>
-                </a>
+            <div class="divider"></div>
+            <p class="desc">执勤卡片电子化管理系统<br>实时查询人员排班、席位分配与执勤信息</p>
+            <div class="meta-row">
+                <span class="meta-item"><span class="dot"></span> 塔台一室</span>
+                <span class="meta-item"><span class="dot"></span> 2024年5月</span>
+                <span class="meta-item"><span class="dot"></span> 内部使用</span>
             </div>
-            <div class="tagline">塔台一室 · 电子化执勤管理系统</div>
+            <a class="entry-btn" href="./执勤卡片0524.html">
+                <span class="eb-icon">📋</span>
+                <span class="eb-text">
+                    <div class="eb-title">进入执勤卡片</div>
+                    <div class="eb-desc">5月24日 · 全员排班与席位查询</div>
+                </span>
+                <span class="eb-arrow">→</span>
+            </a>
         </div>
     </div>
-
     <div class="bottom-bar">
-        <span class="footer-text">Daxing Tower · Internal Use Only</span>
+        <span>Daxing Tower · Internal Use Only</span>
     </div>
 </body>
 </html>
