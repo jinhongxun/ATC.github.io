@@ -3,35 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>金京 · 大兴塔台</title>
+<title>大兴塔台 · 执勤卡片</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
 
-/* ===== Header / Hero ===== */
 .hero{
   background:linear-gradient(135deg,#0f2a44 0%,#1a4a7a 50%,#2d6a9f 100%);
-  color:#fff;
-  padding:60px 24px 40px;
-  text-align:center;
-  position:relative;
-  overflow:hidden
+  color:#fff;padding:60px 24px 40px;text-align:center;
+  position:relative;overflow:hidden
 }
 .hero::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:4px;
-  background:linear-gradient(90deg,#e15759,#edc948,#4e79a7,#76b7b2)
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:4px;background:linear-gradient(90deg,#e15759,#edc948,#4e79a7,#76b7b2)
 }
-.hero h1{font-size:32px;font-weight:700;letter-spacing:4px}
-.hero .title{font-size:16px;margin-top:8px;opacity:.9}
-.hero .subtitle{font-size:13px;margin-top:4px;opacity:.7}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:3px}
+.hero .desc{font-size:14px;margin-top:8px;opacity:.75}
 
-/* ===== Container ===== */
 .container{max-width:960px;margin:0 auto;padding:32px 16px}
 
-/* ===== Section ===== */
 .section{margin-bottom:32px}
 .section h2{
   font-size:18px;color:#1a3a5c;margin-bottom:16px;
@@ -43,27 +33,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#f0
   background:#2d6a9f;border-radius:2px
 }
 
-/* ===== Profile Card ===== */
-.profile-card{
-  background:#fff;border-radius:10px;padding:24px;
-  box-shadow:0 1px 4px rgba(0,0,0,.08);
-  display:grid;gap:16px
-}
-.profile-row{display:flex;gap:12px;align-items:flex-start}
-.profile-row .label{
-  flex-shrink:0;width:72px;font-size:14px;color:#888;text-align:right
-}
-.profile-row .value{font-size:14px;color:#333}
-.tag{
-  display:inline-block;padding:2px 10px;border-radius:10px;
-  font-size:12px;margin:2px 4px 2px 0
-}
-.tag-blue{background:#e3f2fd;color:#1565c0}
-.tag-green{background:#e8f5e9;color:#2e7d32}
-.tag-red{background:#fde8e8;color:#c53030}
-.tag-yellow{background:#fff8e1;color:#b7791f}
-
-/* ===== Tools Grid ===== */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .tool-card{
   background:#fff;border-radius:10px;padding:20px;
@@ -77,79 +46,40 @@ body{font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#f0
 .tool-card p{font-size:13px;color:#888}
 .tool-card .date{font-size:11px;color:#bbb;margin-top:8px}
 
-/* ===== Footer ===== */
 .footer{text-align:center;padding:24px;color:#bbb;font-size:12px}
 
-/* ===== Responsive ===== */
 @media(max-width:600px){
   .hero{padding:40px 16px 30px}
-  .hero h1{font-size:26px}
-  .profile-row{flex-direction:column;gap:2px}
-  .profile-row .label{text-align:left;width:auto;font-size:12px;color:#bbb}
+  .hero h1{font-size:24px}
   .tools-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== Hero ===== -->
 <div class="hero">
-  <h1>金 京</h1>
-  <div class="title">空中交通管制员 · 正高级工程师</div>
-  <div class="subtitle">华北空管局大兴空管中心 · 塔台管制一室</div>
+  <h1>大兴塔台 · 执勤卡片</h1>
+  <div class="desc">塔台一室 · 当日排班查询</div>
 </div>
 
-<!-- ===== Main ===== -->
 <div class="container">
 
-  <!-- 个人简介 -->
   <div class="section">
-    <h2>个人简介</h2>
-    <div class="profile-card">
-      <div class="profile-row">
-        <div class="label">职称</div>
-        <div class="value">
-          <span class="tag tag-red">正高级工程师</span>
-          <span class="tag tag-blue">空中交通管制员</span>
-        </div>
-      </div>
-      <div class="profile-row">
-        <div class="label">单位</div>
-        <div class="value">中国民用航空华北地区空中交通管理局 · 大兴空管中心 · 塔台管制一室</div>
-      </div>
-      <div class="profile-row">
-        <div class="label">履历</div>
-        <div class="value">中国民航大学本科（空中交通管制与签派专业），2003年参加工作，从业 22 年+。</div>
-      </div>
-      <div class="profile-row">
-        <div class="label">专长</div>
-        <div class="value">
-          大兴机场 CAT III B 及 HUD RVR 75米起飞建设 · A-SMGCS 四级系统<br>
-          多跑道汇聚发散运行 · 通用机场无塔台运行规则<br>
-          塔台放行模拟机系统 · ADW TOOL · 起降决策助手
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 工具与应用 -->
-  <div class="section">
-    <h2>工具与应用</h2>
+    <h2>执勤卡片</h2>
     <div class="tools-grid">
       <a href="duty-cards/0524.html" class="tool-card">
         <div class="icon">📋</div>
-        <h3>执勤卡片 · 5月24日</h3>
-        <p>大兴塔台一室当日执勤排班卡片，支持按姓名搜索查看个人排班详情</p>
-        <div class="date">2026年5月24日更新</div>
+        <h3>5月24日 · 执勤卡片</h3>
+        <p>输入姓名搜索查看个人当日排班详情（时段、席位、甘特图）</p>
+        <div class="date">2026年5月24日</div>
       </a>
     </div>
   </div>
 
 </div>
 
-<!-- ===== Footer ===== -->
 <div class="footer">
-  金京 · 个人网站 &copy; 2026 &nbsp;|&nbsp; Powered by GitHub Pages
+  &copy; 2026 &nbsp;|&nbsp; Powered by GitHub Pages
 </div>
 
 </body>
