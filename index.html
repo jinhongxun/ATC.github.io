@@ -16,7 +16,6 @@
             overflow:hidden;
             position:relative
         }
-        /* Subtle grid */
         body::before{
             content:'';position:fixed;top:0;left:0;right:0;bottom:0;
             background-image:
@@ -24,7 +23,6 @@
                 linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
             background-size:60px 60px;z-index:0;pointer-events:none
         }
-        /* Glow orbs */
         .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
         .orb-1{top:-100px;right:-100px;width:400px;height:400px;background:rgba(255,255,255,.04)}
         .orb-2{bottom:-150px;left:-80px;width:350px;height:350px;background:rgba(255,255,255,.03)}
@@ -86,9 +84,6 @@
         .entry-btn .eb-arrow{font-size:20px;color:rgba(255,255,255,.4);transition:all .3s;margin-left:4px}
         .entry-btn:hover .eb-arrow{color:#fff;transform:translateX(4px)}
 
-        .report-btn{background:linear-gradient(135deg,#2a5a8c,#3d7ab5);box-shadow:0 4px 12px rgba(42,90,140,.2)}
-        .report-btn:hover{background:linear-gradient(135deg,#306898,#4588c5);box-shadow:0 8px 24px rgba(42,90,140,.3)}
-
         .bottom-bar{
             position:fixed;bottom:0;left:0;right:0;z-index:10;padding:20px 44px;text-align:center;
             pointer-events:none
@@ -118,7 +113,7 @@
             <p class="desc">执勤卡片电子化管理系统</p>
             <div class="meta-row">
                 <span class="meta-item"><span class="dot"></span> 大兴国际机场</span>
-                <span class="meta-item"><span class="dot"></span> 2024年5月</span>
+                <span class="meta-item"><span class="dot"></span> 5月24日</span>
                 <span class="meta-item"><span class="dot"></span> 内部使用</span>
             </div>
             <div class="entries">
@@ -127,14 +122,6 @@
                     <span class="eb-text">
                         <div class="eb-title">进入执勤卡片</div>
                         <div class="eb-desc">5月24日 · 全员排班与席位查询</div>
-                    </span>
-                    <span class="eb-arrow">→</span>
-                </a>
-                <a class="entry-btn report-btn" href="./排班分析报告0524.html">
-                    <span class="eb-icon">📊</span>
-                    <span class="eb-text">
-                        <div class="eb-title">排班分析报告</div>
-                        <div class="eb-desc">5月24日 · 工时统计与搭配合规</div>
                     </span>
                     <span class="eb-arrow">→</span>
                 </a>
