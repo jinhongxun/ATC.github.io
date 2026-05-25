@@ -3,43 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>塔台管制一室 · 执勤卡片系统</title>
+    <title>塔台管制一室 · 执勤卡片</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{height:100%}
         body{
             font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
             background:linear-gradient(160deg,#1a3a5c 0%,#2d6a9f 50%,#1e5080 100%);
-            color:#fff;
-            height:100vh;
-            width:100vw;
-            overflow:hidden;
-            position:relative
+            color:#fff;height:100vh;width:100vw;overflow:hidden;position:relative
         }
         body::before{
             content:'';position:fixed;top:0;left:0;right:0;bottom:0;
-            background-image:
-                linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+            background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
                 linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
             background-size:60px 60px;z-index:0;pointer-events:none
         }
         .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
         .orb-1{top:-100px;right:-100px;width:400px;height:400px;background:rgba(255,255,255,.04)}
         .orb-2{bottom:-150px;left:-80px;width:350px;height:350px;background:rgba(255,255,255,.03)}
-
         .top-bar{
             position:fixed;top:0;left:0;right:0;z-index:10;padding:22px 44px;
-            display:flex;justify-content:space-between;align-items:center;
-            pointer-events:none
+            display:flex;justify-content:space-between;align-items:center;pointer-events:none
         }
-        .top-bar .brand{font-size:12px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:3px;text-transform:uppercase}
+        .top-bar .brand{font-size:12px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:3px}
         .top-bar .version{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px}
-
         .shell{
             position:relative;z-index:2;height:100vh;width:100vw;
             display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px
         }
-
         .hero-card{
             background:rgba(255,255,255,.95);border-radius:16px;
             box-shadow:0 8px 40px rgba(0,0,0,.15);
@@ -57,43 +48,38 @@
             font-size:28px;color:#fff;box-shadow:0 6px 16px rgba(26,58,92,.25)
         }
         .hero-card h1{font-size:28px;font-weight:700;color:#1a3a5c;letter-spacing:3px;margin-bottom:4px}
-        .hero-card .sub{font-size:13px;color:#8a9aa8;letter-spacing:4px;font-weight:500;margin-bottom:16px;text-transform:uppercase}
+        .hero-card .sub{font-size:13px;color:#8a9aa8;letter-spacing:4px;font-weight:500;margin-bottom:16px}
         .hero-card .divider{width:48px;height:3px;background:linear-gradient(90deg,#1a3a5c,#2d6a9f);margin:0 auto 16px;border-radius:2px}
         .hero-card .desc{font-size:14px;color:#7a8a9a;line-height:1.7;margin-bottom:4px}
         .hero-card .meta-row{display:flex;justify-content:center;gap:24px;margin-top:12px;flex-wrap:wrap}
         .hero-card .meta-item{font-size:12px;color:#9aabb8;letter-spacing:1px}
         .hero-card .meta-item .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#2d6a9f;margin-right:6px;vertical-align:middle}
-
-        .entries{display:flex;flex-direction:column;gap:12px;margin-top:24px;align-items:center}
-
         .entry-btn{
-            display:inline-flex;align-items:center;gap:14px;
-            padding:14px 32px 14px 24px;
+            display:inline-flex;align-items:center;gap:14px;margin-top:28px;
+            padding:16px 36px 16px 28px;
             background:linear-gradient(135deg,#1a3a5c,#2d6a9f);border-radius:10px;
             text-decoration:none;transition:all .3s;
-            box-shadow:0 4px 12px rgba(26,58,92,.2);width:100%;max-width:420px
+            box-shadow:0 4px 12px rgba(26,58,92,.2)
         }
         .entry-btn:hover{
             transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,92,.3);
             background:linear-gradient(135deg,#1e4268,#3478b0)
         }
-        .entry-btn .eb-icon{font-size:18px;color:rgba(255,255,255,.8)}
-        .entry-btn .eb-text{text-align:left;flex:1}
-        .entry-btn .eb-text .eb-title{font-size:15px;font-weight:600;color:#fff;letter-spacing:1px}
-        .entry-btn .eb-text .eb-desc{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
-        .entry-btn .eb-arrow{font-size:20px;color:rgba(255,255,255,.4);transition:all .3s;margin-left:4px}
+        .entry-btn .eb-icon{font-size:20px;color:rgba(255,255,255,.8)}
+        .entry-btn .eb-text{text-align:left}
+        .entry-btn .eb-text .eb-title{font-size:16px;font-weight:600;color:#fff;letter-spacing:1px}
+        .entry-btn .eb-text .eb-desc{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
+        .entry-btn .eb-arrow{font-size:22px;color:rgba(255,255,255,.4);transition:all .3s;margin-left:8px}
         .entry-btn:hover .eb-arrow{color:#fff;transform:translateX(4px)}
-
+        .loading{color:#9aabb8;font-size:13px;margin-top:16px}
         .bottom-bar{
-            position:fixed;bottom:0;left:0;right:0;z-index:10;padding:20px 44px;text-align:center;
-            pointer-events:none
+            position:fixed;bottom:0;left:0;right:0;z-index:10;padding:20px 44px;text-align:center;pointer-events:none
         }
-        .bottom-bar span{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:3px;text-transform:uppercase}
-
+        .bottom-bar span{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:3px}
         @media(max-width:600px){
             .hero-card{padding:32px 20px 28px;margin:0 12px}
             .hero-card h1{font-size:22px}
-            .entry-btn{padding:12px 20px 12px 16px;gap:10px}
+            .entry-btn{padding:14px 24px 14px 20px;gap:10px}
         }
     </style>
 </head>
@@ -105,7 +91,7 @@
         <span class="version">ATC · 内部系统</span>
     </div>
     <div class="shell">
-        <div class="hero-card">
+        <div class="hero-card" id="heroCard">
             <div class="emblem">✈</div>
             <h1>塔台管制一室</h1>
             <div class="sub">Daxing International Airport Tower</div>
@@ -113,23 +99,62 @@
             <p class="desc">执勤卡片电子化管理系统</p>
             <div class="meta-row">
                 <span class="meta-item"><span class="dot"></span> 大兴国际机场</span>
-                <span class="meta-item"><span class="dot"></span> 5月24日</span>
+                <span class="meta-item" id="dateDisplay"><span class="dot"></span> 加载中...</span>
                 <span class="meta-item"><span class="dot"></span> 内部使用</span>
             </div>
-            <div class="entries">
-                <a class="entry-btn" href="./执勤卡片0524.html">
-                    <span class="eb-icon">📋</span>
-                    <span class="eb-text">
-                        <div class="eb-title">进入执勤卡片</div>
-                        <div class="eb-desc">5月24日 · 全员排班与席位查询</div>
-                    </span>
-                    <span class="eb-arrow">→</span>
-                </a>
+            <div id="entryArea">
+                <div class="loading">⏳ 加载最新执勤卡片...</div>
             </div>
         </div>
     </div>
     <div class="bottom-bar">
         <span>Daxing Tower · Internal Use Only</span>
     </div>
+    <script>
+        // 自动查找最新执勤卡片
+        async function loadLatestCard() {
+            try {
+                // 获取仓库文件列表
+                const resp = await fetch('https://api.github.com/repos/jinhongxun/ATC.github.io/contents/');
+                const files = await resp.json();
+                
+                // 过滤出执勤卡片文件，按日期排序
+                const cards = files.filter(f => f.name.match(/^执勤卡片\d{4}\.html$/));
+                if (cards.length === 0) {
+                    document.getElementById('entryArea').innerHTML = '<div class="loading">暂无执勤卡片</div>';
+                    return;
+                }
+                cards.sort((a, b) => b.name.localeCompare(a.name));
+                const latest = cards[0];
+                
+                // 提取日期显示
+                const match = latest.name.match(/执勤卡片(\d{2})(\d{2})\.html/);
+                const dateStr = match ? match[1] + '月' + match[2] + '日' : '';
+                
+                // 更新页面
+                document.getElementById('dateDisplay').innerHTML = '<span class="dot"></span> ' + dateStr;
+                document.getElementById('entryArea').innerHTML =
+                    '<a class="entry-btn" href="./' + latest.name + '">' +
+                    '<span class="eb-icon">📋</span>' +
+                    '<span class="eb-text">' +
+                    '<div class="eb-title">进入执勤卡片</div>' +
+                    '<div class="eb-desc">' + dateStr + ' · 全员排班与席位查询</div>' +
+                    '</span>' +
+                    '<span class="eb-arrow">→</span>' +
+                    '</a>';
+            } catch(e) {
+                document.getElementById('entryArea').innerHTML =
+                    '<a class="entry-btn" href="./执勤卡片0524.html">' +
+                    '<span class="eb-icon">📋</span>' +
+                    '<span class="eb-text">' +
+                    '<div class="eb-title">进入执勤卡片</div>' +
+                    '<div class="eb-desc">查看最新执勤卡片</div>' +
+                    '</span>' +
+                    '<span class="eb-arrow">→</span>' +
+                    '</a>';
+            }
+        }
+        loadLatestCard();
+    </script>
 </body>
 </html>
